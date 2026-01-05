@@ -1,59 +1,78 @@
 # CI/CD Pipeline for a Simple Python Application
 
-## 📌 Overview
-This project demonstrates a basic CI/CD pipeline using **GitHub Actions**.  
+## Overview
+This repository demonstrates a simple CI/CD pipeline built using **GitHub Actions**.  
 The pipeline automatically validates and builds a Python application whenever code is pushed to the repository.
+
+This project is created as part of **Assignment 1: CI/CD Pipeline for a Simple Application**.
 
 ---
 
-## 🧱 Project Structure
+## Project Structure
 app.py # Application code
 test_app.py # Unit tests
 requirements.txt # Dependencies
 .env.example # Environment variable example
+Makefile # One-command local execution
 .github/workflows/ci.yml # CI pipeline configuration
 
 
 ---
 
-## 🔄 CI/CD Pipeline (GitHub Actions)
+## CI/CD Pipeline Explanation
 
-### 🔹 Trigger
-- Runs automatically on **every push to the `main` branch**
+### Trigger
+- The pipeline runs automatically on **every push to the `main` branch**.
 
-### 🔹 Pipeline Stages
-1. **Checkout Code** – Fetches latest repository code  
-2. **Set Up Python** – Configures Python runtime  
-3. **Install Dependencies** – Installs packages from `requirements.txt`  
-4. **Run Linting** – Uses `flake8`; pipeline fails on style errors  
-5. **Run Tests** – Uses `pytest`; pipeline fails on test failures  
-6. **Build Step** – Compiles Python files to validate syntax  
-
----
-
-## ❌ Failure Handling
-- Pipeline stops immediately if **linting or tests fail**
-- Ensures only clean and correct code passes CI
+### Pipeline Stages
+1. **Checkout Code** – Fetches the latest code
+2. **Set Up Python** – Configures Python runtime
+3. **Install Dependencies** – Installs packages from `requirements.txt`
+4. **Run Linting** – Uses `flake8`; pipeline fails on lint errors
+5. **Run Tests** – Uses `pytest`; pipeline fails on test failures
+6. **Build Step** – Compiles Python files to validate syntax
 
 ---
 
-## 🔐 Environment Variables
-- Uses environment variables instead of hard-coded values  
+## Failure Handling
+- The pipeline stops immediately if **linting or tests fail**.
+- This ensures only clean and correct code passes CI.
+
+---
+
+## Environment Variables
+- Configuration is handled using environment variables (no hard-coded secrets).
 - Example:
+
+
 APP_NAME=MyCIApp
 
 
 ---
 
-## ▶️ Run Locally
-```bash
-pip install -r requirements.txt
-export APP_NAME=LocalApp
-python app.py
-flake8 app.py
-pytest
+## How to Run the Pipeline
+The pipeline runs automatically when code is pushed:
 
+```bash
 git add .
 git commit -m "Commit message"
 git push origin main
-Pipeline runs automatically via GitHub Actions.
+
+Run Locally (Optional)
+
+The entire project can be run locally using a single command:
+
+make all
+
+
+This command:
+
+Sets up a virtual environment
+
+Installs dependencies
+
+Runs linting and tests
+
+Executes the build step
+
+Runs the application
