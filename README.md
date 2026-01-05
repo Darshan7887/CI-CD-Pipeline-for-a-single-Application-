@@ -49,15 +49,17 @@ APP_NAME=MyCIApp
 
 
 ---
-
 ## How to Run the Pipeline
-The pipeline runs automatically when code is pushed:
 
+The CI pipeline runs automatically whenever code is pushed to the repository.
+
+### Trigger the CI Pipeline
 ```bash
 git add .
 git commit -m "Commit message"
 git push origin main
 
+---
 Run Locally (Optional)
 
 The entire project can be run locally using a single command:
